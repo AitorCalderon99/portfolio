@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+$primary-color: #00ADB5;
+$secondary-color: #ECC30B;
+$white-text: #FFFFFF;
+$white-bg: #EFEFEF;
+$black: #000000;
+
+
+*{
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Nunito, "Source Sans Pro", Roboto, Montserrat, serif;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 16px;
+}
