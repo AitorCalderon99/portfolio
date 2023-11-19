@@ -11,7 +11,7 @@
   text-align: center;
   justify-content: space-between;
   width: 91.666667%;
-  max-width: 1024px;
+  max-width: 82rem;
   padding: 0 1.4rem 0 1.4rem;
   background-color: transparent;
   height: 3.5rem;
@@ -19,7 +19,7 @@
   transition: background-color 0.6s ease-in-out;
 
   &.scrolled {
-    background-color: rgba(6, 9, 24, 0.42);
+    background-color: rgba(6, 9, 24, 0.4);
     border: 0.3px solid var(--white-bg);
   }
 
