@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+
+.work-container{
+  width: 100%;
+  display: flex;
+  align-items: center; /* Esto centra el contenido verticalmente */
+  justify-content: center; /* Esto centra el contenido horizontalmente */
+  height: 100vh;
+}
