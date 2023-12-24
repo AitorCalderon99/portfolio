@@ -1,5 +1,6 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {ScrollService} from "../shared/services/scroll.service";
 
 @Component({
   selector: 'app-header',
@@ -8,17 +9,20 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   isScrolled = false;
   isHamburgerActive = false;
+
+  constructor(private scrollService: ScrollService) {
+  }
 
   toggleButton() {
     this.isHamburgerActive = !this.isHamburgerActive;
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isScrolled = scrollPosition > 100;
+  ngOnInit() {
+    this.scrollService.getScrollObservable().subscribe((scrollPosition) => {
+      this.isScrolled = scrollPosition > 100;
+    });
   }
 }
