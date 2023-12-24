@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ScrollService} from "../shared/services/scroll.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,10 @@ import {ScrollService} from "../shared/services/scroll.service";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled = false;
   isHamburgerActive = false;
+  scrollSubscription: Subscription;
 
   constructor(private scrollService: ScrollService) {
   }
@@ -21,8 +23,12 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.scrollService.getScrollObservable().subscribe((scrollPosition) => {
+    this.scrollSubscription = this.scrollService.getScrollObservable().subscribe((scrollPosition) => {
       this.isScrolled = scrollPosition > 100;
     });
+  }
+
+  ngOnDestroy() {
+    this.scrollSubscription?.unsubscribe();
   }
 }
