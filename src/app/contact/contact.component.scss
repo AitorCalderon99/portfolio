@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.contact-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $secondary-color;
+}
