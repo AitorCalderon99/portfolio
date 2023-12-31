@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private scrollService: ScrollService) {
   }
 
+  scrollToSection(sectionId: string) {
+    this.scrollService.scrollToSection(sectionId);
+  }
+
   toggleButton() {
     this.isHamburgerActive = !this.isHamburgerActive;
   }

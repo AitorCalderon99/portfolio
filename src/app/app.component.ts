@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
@@ -8,6 +8,7 @@ import {WorkComponent} from "./work/work.component";
 import {ScrollService} from "./shared/services/scroll.service";
 import {ContactComponent} from "./contact/contact.component";
 import {FooterComponent} from "./footer/footer.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -16,20 +17,40 @@ import {FooterComponent} from "./footer/footer.component";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit, OnDestroy {
 
-  constructor(private scrollService: ScrollService) {}
+  private subscription: Subscription;
 
   title = 'Portfolio';
 
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
 
+  @ViewChild('home') home: ElementRef;
+  @ViewChild('about') about: ElementRef;
+  @ViewChild('work') work: ElementRef;
+  @ViewChild('contact') contact: ElementRef;
+  @ViewChild('footer') footer: ElementRef;
+
+  constructor(private scrollService: ScrollService) {
+  }
+
   ngAfterViewInit() {
     const containerElement = this.scrollContainer.nativeElement;
 
     containerElement.addEventListener('scroll', () => {
-      const scrollPosition = containerElement.scrollTop;
-      this.scrollService.notifyScroll(scrollPosition);
+      this.scrollService.notifyScroll(containerElement.scrollTop);
     });
+
+    this.subscription = this.scrollService.section$.subscribe(sectionId => {
+      this.scrollToElement(this[sectionId]);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  scrollToElement(element: ElementRef) {
+    element.nativeElement.scrollIntoView({behavior: "smooth"});
   }
 }

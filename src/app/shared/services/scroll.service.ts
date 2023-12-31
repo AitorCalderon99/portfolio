@@ -6,6 +6,9 @@ import { Subject } from 'rxjs';
 })
 export class ScrollService {
   private scrollSubject = new Subject<number>();
+  private sectionSource = new Subject<string>();
+
+  section$ = this.sectionSource.asObservable();
 
   getScrollObservable() {
     return this.scrollSubject.asObservable();
@@ -13,5 +16,9 @@ export class ScrollService {
 
   notifyScroll(position: number) {
     this.scrollSubject.next(position);
+  }
+
+  scrollToSection(sectionId: string) {
+    this.sectionSource.next(sectionId);
   }
 }
