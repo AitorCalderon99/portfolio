@@ -1,5 +1,5 @@
 <div class="header-container" [class.scrolled]="isScrolled">
-  <img src="/assets/logo.svg" alt="Logo">
+  <a href="#home"><img src="/assets/logo.svg" alt="Logo"></a>
 
   <div class="hamburguer">
     <div class="btn not-active" (click)="toggleButton()" [ngClass]="{'active': isHamburgerActive, 'not-active': !isHamburgerActive}">
@@ -11,9 +11,9 @@
 
   <nav class="navbar">
     <ul>
-      <li><a href="#" class="hover-underline-animation">SOBRE MI</a></li>
-      <li><a href="#" class="hover-underline-animation">TRABAJOS</a></li>
-      <li><a href="#" class="hover-underline-animation">CONTACTO</a></li>
+      <li><a href="#about"  class="hover-underline-animation">SOBRE MI</a></li>
+      <li><a href="#work" class="hover-underline-animation">TRABAJOS</a></li>
+      <li><a href="#contact" class="hover-underline-animation">CONTACTO</a></li>
     </ul>
   </nav>
 </div>
