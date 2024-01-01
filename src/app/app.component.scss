@@ -9,3 +9,25 @@
   height: 100vh;
   scroll-snap-align: start;
 }
+
+.right-nav {
+  position: fixed;
+  top: 50%;
+  right: 4%;
+  transform: translateY(-50%);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+      .nav-svg {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,15 +1,15 @@
 <app-header/>
 <div class="scroll-container" #scrollContainer>
-  <div id="home" #home class="section">
+  <div id="{{Section.Home}}" #home class="section">
     <app-home></app-home>
   </div>
-  <div id="about" #about class="section">
+  <div id="{{Section.About}}" #about class="section">
     <app-about></app-about>
   </div>
-  <div id="work" #work class="section">
+  <div id="{{Section.Work}}" #work class="section">
     <app-work></app-work>
   </div>
-  <div id="contact" #contact class="section">
+  <div id="{{Section.Contact}}" #contact class="section">
     <app-contact></app-contact>
   </div>
   <div id="footer" #footer class="section">
@@ -17,12 +17,14 @@
   </div>
 </div>
 
-<nav>
+<nav class="right-nav">
   <ul>
-    <li [class.active]="scrollSectionPosition === 'home'"><a (click)="scrollToElement('home')">Home</a></li>
-    <li [class.active]="scrollSectionPosition === 'about'"><a (click)="scrollToElement('about')">About</a></li>
-    <li [class.active]="scrollSectionPosition === 'work'"><a (click)="scrollToElement('work')">Work</a></li>
-    <li [class.active]="scrollSectionPosition === 'contact'"><a (click)="scrollToElement('contact')">Contact</a></li>
+    @for (section of sections; track section) {
+      <li [class.active]="scrollSectionPosition === section">
+        <img class="nav-svg" ngSrc="assets/star.svg" alt="nav svg" height="24" width="24"
+             (click)="scrollToElement(section)">
+      </li>
+    }
   </ul>
 </nav>
 
