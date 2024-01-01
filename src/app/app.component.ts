@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'Portfolio';
 
   @ViewChildren('scrollContainer, home, about, work, contact, footer') sections: QueryList<ElementRef>;
-
+  protected scrollSectionPosition: string;
   private destroy$ = new Subject<void>();
 
   constructor(private scrollService: ScrollService) {
@@ -31,7 +31,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.subscribeToScrollService();
   }
 
-  scrollToElement(element: ElementRef) {
+  scrollToElement(sectionId: string) {
+    const element: ElementRef = this.sections.find(section => section.nativeElement.id === sectionId);
     element.nativeElement.scrollIntoView({behavior: "smooth"});
   }
 
@@ -44,12 +45,23 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const scrollContainerElement = this.sections.toArray()[0].nativeElement;
     fromEvent(scrollContainerElement, 'scroll')
       .pipe(takeUntil(this.destroy$))
-      .subscribe(() => this.scrollService.notifyScroll(scrollContainerElement.scrollTop));
+      .subscribe(() => {
+        const scrollTop = scrollContainerElement.scrollTop;
+        this.setScrollSectionPosition(scrollTop, scrollContainerElement.clientHeight);
+        this.scrollService.notifyScroll(scrollTop);
+      });
   }
+
+  private setScrollSectionPosition(scrollTop: number, clientHeight: number) {
+    const sectionsArray = this.sections.toArray();
+    const currentComponentIndex = Math.floor(scrollTop / clientHeight);
+    this.scrollSectionPosition = sectionsArray[currentComponentIndex + 1].nativeElement.id;
+  }
+
 
   private subscribeToScrollService() {
     this.scrollService.section$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(sectionId => this.scrollToElement(this.sections.find(section => section.nativeElement.id === sectionId)));
+      .subscribe(sectionId => this.scrollToElement(sectionId));
   }
 }

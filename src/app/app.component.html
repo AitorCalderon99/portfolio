@@ -16,3 +16,13 @@
     <app-footer></app-footer>
   </div>
 </div>
+
+<nav>
+  <ul>
+    <li [class.active]="scrollSectionPosition === 'home'"><a (click)="scrollToElement('home')">Home</a></li>
+    <li [class.active]="scrollSectionPosition === 'about'"><a (click)="scrollToElement('about')">About</a></li>
+    <li [class.active]="scrollSectionPosition === 'work'"><a (click)="scrollToElement('work')">Work</a></li>
+    <li [class.active]="scrollSectionPosition === 'contact'"><a (click)="scrollToElement('contact')">Contact</a></li>
+  </ul>
+</nav>
+
