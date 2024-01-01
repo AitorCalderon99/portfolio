@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ScrollService} from "../shared/services/scroll.service";
 import {Subscription} from "rxjs";
+import {Section} from "../shared/section.enum";
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,9 @@ import {Subscription} from "rxjs";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
+  protected readonly Section = Section;
+
   isScrolled = false;
   isHamburgerActive = false;
   scrollSubscription: Subscription;
