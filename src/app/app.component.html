@@ -20,9 +20,12 @@
 <nav class="right-nav">
   <ul>
     @for (section of sections; track section) {
-      <li [class.active]="scrollSectionPosition === section">
-        <img class="nav-svg" ngSrc="assets/star.svg" alt="nav svg" height="24" width="24"
-             (click)="scrollToElement(section)">
+      <li>
+        <img class="nav-svg material-symbols-outlined"
+             [ngSrc]="scrollSectionPosition === section ? 'assets/rombo.svg' : 'assets/cleanRombo.svg'"
+             alt="nav svg" height="24" width="24"
+             (click)="scrollToElement(section)"
+             [class.active]="scrollSectionPosition === section">
       </li>
     }
   </ul>

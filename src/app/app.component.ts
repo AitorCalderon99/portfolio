@@ -23,7 +23,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'Portfolio';
 
   @ViewChildren(`scrollContainer, ${Section.Home}, ${Section.About}, ${Section.Work}, ${Section.Contact}, footer`) sectionsRef: QueryList<ElementRef>;
-  protected scrollSectionPosition: string;
+  protected scrollSectionPosition: string = 'home';
   protected readonly Section = Section;
   protected readonly sections: Section[] = Object.values(Section);
   private destroy$ = new Subject<void>();
