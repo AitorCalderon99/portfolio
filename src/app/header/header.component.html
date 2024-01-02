@@ -1,5 +1,5 @@
 <div class="header-container" [class.scrolled]="isScrolled">
-  <a (click)="scrollToSection(Section.Home)"><img src="/assets/logo.svg" alt="Logo"></a>
+  <a (click)="scrollToSection(Section.Home)" class="logo"><img src="/assets/logo.svg" alt="Logo"></a>
 
   <div class="hamburguer">
     <div class="btn not-active" (click)="toggleButton()" [ngClass]="{'active': isHamburgerActive, 'not-active': !isHamburgerActive}">
