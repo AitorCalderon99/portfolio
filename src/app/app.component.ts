@@ -7,14 +7,13 @@ import {ScrollService} from "./shared/services/scroll.service";
 import {ContactComponent} from "./contact/contact.component";
 import {FooterComponent} from "./footer/footer.component";
 import {fromEvent, Subject, takeUntil} from "rxjs";
-import {NgOptimizedImage} from "@angular/common";
+import {NgClass, NgOptimizedImage} from "@angular/common";
 import {Section} from './shared/section.enum';
-
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, HomeComponent, AboutComponent, WorkComponent, ContactComponent, FooterComponent, NgOptimizedImage],
+  imports: [HeaderComponent, HomeComponent, AboutComponent, WorkComponent, ContactComponent, FooterComponent, NgOptimizedImage, NgClass],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

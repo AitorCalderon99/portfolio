@@ -16,8 +16,7 @@
     <app-footer></app-footer>
   </div>
 </div>
-
-<nav class="right-nav">
+<nav class="right-nav" [ngClass]="{'active': scrollSectionPosition != 'footer'}">
   <ul>
     @for (section of sections; track section) {
       <li>
@@ -30,4 +29,6 @@
     }
   </ul>
 </nav>
+
+
 
