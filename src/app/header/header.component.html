@@ -25,18 +25,28 @@
     <div class="links">
       <ng-container *ngFor="let section of Sections; let i = index">
         <a (click)="scrollToSection(section)"
-           [style.animation-delay]="(0.4 * (i + 1)) + 's'"
+           [style.animation-delay]="(0.3 * (i + 1)) + 's'"
            [ngClass]="{'animate__animated animate__slideInLeft': isHamburgerActive}">
           <span class="hover-underline-animation">{{ section }}</span>
         </a>
       </ng-container>
     </div>
     <div class="contact">
-      <h3>Let’s Connect!</h3>
+      <h3 [style.animation-delay]="'1.5s'"
+          [ngClass]="{'animate__animated animate__lightSpeedInLeft': isHamburgerActive}">Let’s Connect!</h3>
       <div class="social">
-        <a href="mailto:aitorclzamakola@gmail.com"><span class="hover-underline-animation">Email</span></a>
-        <a href="https://www.linkedin.com/in/aitorcalderon/"><span class="hover-underline-animation">Linkedin</span></a>
-        <a href="https://github.com/AitorCalderon99"><span class="hover-underline-animation">Github</span></a>
+        <a href="https://www.linkedin.com/in/aitorcalderon/"
+           [style.animation-delay]="'1.1s'"
+           [ngClass]="{'animate__animated animate__fadeInUpBig': isHamburgerActive}"><span
+          class="hover-underline-animation">Linkedin</span></a>
+        <a href="mailto:aitorclzamakola@gmail.com"
+           [style.animation-delay]="'1.3s'"
+           [ngClass]="{'animate__animated animate__fadeInUpBig': isHamburgerActive}"><span
+          class="hover-underline-animation">Email</span></a>
+        <a href="https://github.com/AitorCalderon99"
+           [style.animation-delay]="'1.5s'"
+           [ngClass]="{'animate__animated animate__fadeInUpBig': isHamburgerActive}"><span
+          class="hover-underline-animation">Github</span></a>
       </div>
     </div>
   </div>

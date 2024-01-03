@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isHamburgerActive: boolean | null = null;
   scrollSubscription: Subscription;
   protected readonly Section = Section;
-  protected readonly Sections = Object.keys(Section);
+  protected readonly Sections = Object.values(Section);
 
   constructor(private scrollService: ScrollService) {
   }
