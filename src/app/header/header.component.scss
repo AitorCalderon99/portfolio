@@ -207,7 +207,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.7);
   transform: translateX(-100%);
   transition: transform 0.4s ease-in-out;
 }
@@ -215,4 +215,5 @@
 .fullscreen-nav.open {
   transform: translateX(0);
   z-index: 1;
+  backdrop-filter: blur(3px);
 }
