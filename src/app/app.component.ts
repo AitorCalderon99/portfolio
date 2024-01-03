@@ -49,7 +49,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private setupScrollListener() {
     const scrollContainerElement = this.sectionsRef.toArray()[0].nativeElement;
     fromEvent(scrollContainerElement, 'scroll')
-      .pipe(takeUntil(this.destroy$))
+      .pipe(this.takeUntilDestroy())
       .subscribe(() => {
         const scrollTop = scrollContainerElement.scrollTop;
         this.setScrollSectionPosition(scrollTop, scrollContainerElement.clientHeight);
@@ -65,13 +65,17 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   private subscribeToScrollService() {
     this.scrollService.section$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(sectionId => this.scrollToElement(sectionId));
+      .pipe(this.takeUntilDestroy())
+      .subscribe((sectionId: string) => this.scrollToElement(sectionId));
   }
 
   private subscribeToSectionPosition() {
     this.scrollService.position$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(position => this.scrollSectionPosition = position);
+      .pipe(this.takeUntilDestroy())
+      .subscribe((position: string) => this.scrollSectionPosition = position);
+  }
+
+  private takeUntilDestroy() {
+    return takeUntil(this.destroy$);
   }
 }
