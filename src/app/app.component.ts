@@ -22,7 +22,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'Portfolio';
 
   @ViewChildren(`scrollContainer, ${Section.Home}, ${Section.About}, ${Section.Work}, ${Section.Contact}, footer`) sectionsRef: QueryList<ElementRef>;
-  protected scrollSectionPosition: string = 'home';
+  protected scrollSection: string = 'home';
   protected readonly Section = Section;
   protected readonly sections: Section[] = Object.values(Section);
   private destroy$ = new Subject<void>();
@@ -36,14 +36,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.subscribeToSectionPosition();
   }
 
-  scrollToElement(sectionId: string) {
-    const element: ElementRef = this.sectionsRef.find(section => section.nativeElement.id === sectionId);
-    element.nativeElement.scrollIntoView({behavior: "smooth"});
-  }
-
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  scrollToElement(sectionId: string) {
+    const element: ElementRef = this.sectionsRef.find(section => section.nativeElement.id === sectionId);
+    element?.nativeElement.scrollIntoView({behavior: "smooth"});
   }
 
   private setupScrollListener() {
@@ -52,12 +52,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       .pipe(this.takeUntilDestroy())
       .subscribe(() => {
         const scrollTop = scrollContainerElement.scrollTop;
-        this.setScrollSectionPosition(scrollTop, scrollContainerElement.clientHeight);
+        this.setScrollSection(scrollTop, scrollContainerElement.clientHeight);
         this.scrollService.notifyScroll(scrollTop);
       });
   }
 
-  private setScrollSectionPosition(scrollTop: number, clientHeight: number) {
+  private setScrollSection(scrollTop: number, clientHeight: number) {
     const sectionsArray = this.sectionsRef.toArray();
     const currentComponentIndex = Math.floor(scrollTop / clientHeight);
     this.scrollService.setScrollSectionPosition(sectionsArray[currentComponentIndex + 1].nativeElement.id)
@@ -72,7 +72,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private subscribeToSectionPosition() {
     this.scrollService.position$
       .pipe(this.takeUntilDestroy())
-      .subscribe((position: string) => this.scrollSectionPosition = position);
+      .subscribe((position: string) => this.scrollSection = position);
   }
 
   private takeUntilDestroy() {
