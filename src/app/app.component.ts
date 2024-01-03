@@ -33,6 +33,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.setupScrollListener();
     this.subscribeToScrollService();
+    this.subscribeToSectionPosition();
   }
 
   scrollToElement(sectionId: string) {
@@ -59,12 +60,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private setScrollSectionPosition(scrollTop: number, clientHeight: number) {
     const sectionsArray = this.sectionsRef.toArray();
     const currentComponentIndex = Math.floor(scrollTop / clientHeight);
-    this.scrollSectionPosition = sectionsArray[currentComponentIndex + 1].nativeElement.id;
+    this.scrollService.setScrollSectionPosition(sectionsArray[currentComponentIndex + 1].nativeElement.id)
   }
 
   private subscribeToScrollService() {
     this.scrollService.section$
       .pipe(takeUntil(this.destroy$))
       .subscribe(sectionId => this.scrollToElement(sectionId));
+  }
+
+  private subscribeToSectionPosition() {
+    this.scrollService.position$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(position => this.scrollSectionPosition = position);
   }
 }

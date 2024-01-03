@@ -7,8 +7,10 @@ import { Subject } from 'rxjs';
 export class ScrollService {
   private scrollSubject = new Subject<number>();
   private sectionSource = new Subject<string>();
+  private scrollSectionPosition= new Subject<string>();
 
   section$ = this.sectionSource.asObservable();
+  position$= this.scrollSectionPosition.asObservable();
 
   getScrollObservable() {
     return this.scrollSubject.asObservable();
@@ -20,5 +22,9 @@ export class ScrollService {
 
   scrollToSection(sectionId: string) {
     this.sectionSource.next(sectionId);
+  }
+
+  setScrollSectionPosition(position: string){
+    this.scrollSectionPosition.next(position);
   }
 }
