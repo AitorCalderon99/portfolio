@@ -9,11 +9,12 @@ import {FooterComponent} from "./footer/footer.component";
 import {fromEvent, Subject, takeUntil} from "rxjs";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {Section} from './shared/section.enum';
+import {RightNavComponent} from "./right-nav/right-nav.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, HomeComponent, AboutComponent, WorkComponent, ContactComponent, FooterComponent, NgOptimizedImage, NgClass],
+  imports: [HeaderComponent, HomeComponent, AboutComponent, WorkComponent, ContactComponent, FooterComponent, NgOptimizedImage, NgClass, RightNavComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

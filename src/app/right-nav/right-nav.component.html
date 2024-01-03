@@ -1,0 +1,13 @@
+<nav class="right-nav" [ngClass]="{'active': scrollSection != 'footer'}">
+  <ul>
+    @for (section of sections; track section) {
+      <li>
+        <img class="nav-svg material-symbols-outlined"
+             [ngSrc]="scrollSection === section ? 'assets/rombo.svg' : 'assets/cleanRombo.svg'"
+             alt="nav svg" height="24" width="24"
+             (click)="onSectionClick(section)"
+             [class.active]="scrollSection === section">
+      </li>
+    }
+  </ul>
+</nav>

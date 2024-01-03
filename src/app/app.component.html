@@ -16,19 +16,6 @@
     <app-footer></app-footer>
   </div>
 </div>
-<nav class="right-nav" [ngClass]="{'active': scrollSection != 'footer'}">
-  <ul>
-    @for (section of sections; track section) {
-      <li>
-        <img class="nav-svg material-symbols-outlined"
-             [ngSrc]="scrollSection === section ? 'assets/rombo.svg' : 'assets/cleanRombo.svg'"
-             alt="nav svg" height="24" width="24"
-             (click)="scrollToElement(section)"
-             [class.active]="scrollSection === section">
-      </li>
-    }
-  </ul>
-</nav>
 
-
-
+<app-right-nav [scrollSection]="scrollSection" [sections]="sections"
+               (sectionClick)="scrollToElement($event)"></app-right-nav>

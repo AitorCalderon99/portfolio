@@ -9,32 +9,3 @@
   height: 100vh;
   scroll-snap-align: start;
 }
-
-.right-nav {
-  position: fixed;
-  top: 50%;
-  right: 4%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.75s ease-in-out;
-
-  &.active {
-    opacity: 1;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      margin-bottom: 15px;
-
-      .nav-svg {
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}
