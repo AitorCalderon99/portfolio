@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ScrollService} from "../shared/services/scroll.service";
 import {Subscription} from "rxjs";
@@ -13,21 +13,31 @@ import {Section} from "../shared/section.enum";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  protected readonly Section = Section;
-
   isScrolled = false;
-  isHamburgerActive = false;
+  isHamburgerActive: boolean | null = null;
   scrollSubscription: Subscription;
+  protected readonly Section = Section;
+  protected readonly Sections = Object.keys(Section);
 
   constructor(private scrollService: ScrollService) {
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    const largeMediaQuery = window.matchMedia('(min-width: 1024px)');
+
+    if (this.isHamburgerActive && largeMediaQuery.matches) {
+      this.toggleHamburger();
+    }
+  }
+
   scrollToSection(sectionId: string) {
+    this.isHamburgerActive = this.isHamburgerActive ? false : this.isHamburgerActive;
     this.scrollService.scrollToSection(sectionId);
   }
 
-  toggleButton() {
-    this.isHamburgerActive = !this.isHamburgerActive;
+  toggleHamburger() {
+    this.isHamburgerActive = this.isHamburgerActive ? !this.isHamburgerActive : true;
   }
 
   ngOnInit() {

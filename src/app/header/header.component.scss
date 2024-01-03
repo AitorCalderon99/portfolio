@@ -70,6 +70,7 @@
     @include media-query('large') {
       display: none;
     }
+
     border-radius: 2px;
 
     .btn {
@@ -210,10 +211,56 @@
   background: rgba(0, 0, 0, 0.7);
   transform: translateX(-100%);
   transition: transform 0.4s ease-in-out;
+
+  .nav-container {
+    position: absolute;
+    top: 50%;
+    margin-left: 2.5em;
+    transform: translateY(-50%);
+    font-size: 1.75em;
+    @include media-query('small') {
+      font-size: 2.25em;
+    }
+    @include media-query('medium') {
+      font-size: 2.5em;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      a {
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+
+    .contact{
+      h2{
+        color: $white-bg;
+        letter-spacing: 3px;
+      }
+      .social{
+        display: flex;
+        gap: 0.5em;
+        flex-wrap: wrap;
+      }
+    }
+
+    div:not(div:last-child) {
+      margin-bottom: 3em;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .fullscreen-nav.open {
-  transform: translateX(0);
   z-index: 1;
   backdrop-filter: blur(3px);
 }

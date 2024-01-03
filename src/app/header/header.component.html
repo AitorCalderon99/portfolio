@@ -2,7 +2,7 @@
   <a (click)="scrollToSection(Section.Home)" class="logo"><img src="/assets/logo.svg" alt="Logo"></a>
 
   <div class="hamburguer">
-    <div class="btn not-active" (click)="toggleButton()"
+    <div class="btn not-active" (click)="toggleHamburger()"
          [ngClass]="{'active': isHamburgerActive, 'not-active': !isHamburgerActive}">
       <span></span>
       <span></span>
@@ -19,4 +19,25 @@
   </nav>
 </div>
 
-<span class="fullscreen-nav" [class.open]="isHamburgerActive"></span>
+<span class="fullscreen-nav animate__animated"
+      [ngClass]="{'animate__slideInLeft': isHamburgerActive, 'open': isHamburgerActive, 'animate__slideOutLeft': isHamburgerActive === false}">
+  <div class="nav-container">
+    <div class="links">
+      <ng-container *ngFor="let section of Sections; let i = index">
+        <a (click)="scrollToSection(section)"
+           [style.animation-delay]="(0.4 * (i + 1)) + 's'"
+           [ngClass]="{'animate__animated animate__slideInLeft': isHamburgerActive}">
+          <span class="hover-underline-animation">{{ section }}</span>
+        </a>
+      </ng-container>
+    </div>
+    <div class="contact">
+      <h3>Let’s Connect!</h3>
+      <div class="social">
+        <a href="mailto:aitorclzamakola@gmail.com"><span class="hover-underline-animation">Email</span></a>
+        <a href="https://www.linkedin.com/in/aitorcalderon/"><span class="hover-underline-animation">Linkedin</span></a>
+        <a href="https://github.com/AitorCalderon99"><span class="hover-underline-animation">Github</span></a>
+      </div>
+    </div>
+  </div>
+</span>
