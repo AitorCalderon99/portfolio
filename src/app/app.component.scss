@@ -1,3 +1,5 @@
+@import "../styles/variables";
+
 .scroll-container {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
@@ -6,6 +8,6 @@
 }
 
 .section {
-  height: 100vh;
+  height: $view-height;
   scroll-snap-align: start;
 }

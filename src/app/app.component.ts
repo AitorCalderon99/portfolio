@@ -53,7 +53,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       .pipe(this.takeUntilDestroy())
       .subscribe(() => {
         const scrollTop = scrollContainerElement.scrollTop;
-        this.setScrollSection(scrollTop, scrollContainerElement.clientHeight);
+        this.setScrollSection(scrollTop, scrollContainerElement.clientHeight * 0.7);
         this.scrollService.notifyScroll(scrollTop);
       });
   }
