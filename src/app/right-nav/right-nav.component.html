@@ -3,7 +3,7 @@
     @for (section of sections; track section) {
       <li>
         <img class="nav-svg material-symbols-outlined"
-             [ngSrc]="scrollSection === section ? 'assets/rombo.svg' : 'assets/cleanRombo.svg'"
+             [ngSrc]="scrollSection === section ? 'assets/images/rombo.svg' : 'assets/images/cleanRombo.svg'"
              alt="nav svg" height="24" width="24"
              (click)="onSectionClick(section)"
              [class.active]="scrollSection === section">
