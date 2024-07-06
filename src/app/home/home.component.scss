@@ -1,9 +1,32 @@
 @import "../../styles/variables";
 
-.home-container{
+.home-container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: $view-height;
+  padding: 5em;
+
+  .text-container {
+    width: 400px;
+
+    h1, h3 {
+      margin: 0;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2px;
+      opacity: .92;
+      transform: rotate(-3deg);
+      transform-origin: bottom left;
+      font-family: $cursive-fonts, $default-fonts;
+
+      .waving-hand {
+        padding-right: 4px;
+      }
+    }
+  }
 }

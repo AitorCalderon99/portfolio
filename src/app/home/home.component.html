@@ -1,3 +1,6 @@
 <div class="home-container">
-  <h1>home</h1>
+  <div class="text-container">
+    <h2><img ngSrc="assets/images/hand-waving.svg" alt="hand waving" class="waving-hand" height="24" width="24"> Hey! I`m  </h2>
+    <h1 [ngClass]="animateClass" class="animate__animated">{{ mainText }}</h1>
+  </div>
 </div>
