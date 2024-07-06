@@ -13,6 +13,15 @@ $breakpoints: (
   'xlarge': 1200px
 );
 
+// Fonts
+$default-fonts: Nunito, Roboto, "Helvetica Neue", sans-serif;
+$cursive-fonts: 'Dancing Script';
+
+@font-face {
+  font-family: 'Dancing Script';
+  src: url('./fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
+}
+
 $view-height: 85vh;
 
 @mixin media-query($breakpoint) {
