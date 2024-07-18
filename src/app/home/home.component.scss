@@ -9,7 +9,11 @@
   padding: 5em;
 
   .text-container {
-    width: 400px;
+    width: 95%;
+    @include media-query('medium') {
+      width: 75%;
+    }
+    text-transform: uppercase;
 
     h1, h3 {
       margin: 0;
@@ -19,7 +23,14 @@
       display: flex;
       align-items: center;
       margin-bottom: 2px;
+      flex-wrap: wrap;
       opacity: .92;
+      font-size: 1.8em;
+
+      @include media-query('medium') {
+        font-size: 2.2em;
+      }
+
       transform: rotate(-3deg);
       transform-origin: bottom left;
       font-family: $cursive-fonts, $default-fonts;
@@ -27,6 +38,11 @@
       .waving-hand {
         padding-right: 4px;
       }
+    }
+
+    p {
+      font-size: 1.2em;
+      text-align: justify;
     }
   }
 }

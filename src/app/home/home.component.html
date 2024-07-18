@@ -1,6 +1,12 @@
 <div class="home-container">
   <div class="text-container">
-    <h2><img ngSrc="assets/images/hand-waving.svg" alt="hand waving" class="waving-hand" height="24" width="24"> Hey! I`m  </h2>
-    <h1 [ngClass]="animateClass" class="animate__animated">{{ mainText }}</h1>
+    <h2>
+      <span>
+        <img ngSrc="assets/images/hand-waving.svg" alt="hand waving" class="waving-hand" height="26" width="26">
+        Hey! I`m &nbsp;
+      </span>
+      <span [ngClass]="animateClass" class="animate__animated">{{ mainText }}</span>
+    </h2>
+    <p>I enjoy creating robust and scalable frontend solutions that offer outstanding user experiences</p>
   </div>
 </div>
